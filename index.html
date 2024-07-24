@@ -4,22 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IFCD0210: Proyecto Desarrollo Web</title>
+    <title>Carrito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="img/proyecto/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AR:wght@100..400&display=swap" rel="stylesheet">
     <script defer src="app.js"></script>
 </head>
 
 <body>
-    <p id="parrafo" class="uno dos tres">Lorem, ipsum dolor.</p>
-    <ol>
-        <li>primer elemento</li>
-        <li>segundo elemento</li>
-        <li>tercero elemento</li>
-    </ol>
 
-    <form action="">
-        <input class="input" type="text" name="nombre">
-        <button type="submit">click me</button>
-    </form>
+    <section class="container-sticky">
+
+    <header>
+
+        <img id="logo" src="/img/proyecto/logo.png" alt="logo">
+        <h1>Carrito de la compra</h1>
+        <div class="precioContainer">
+            <p>Total:</p>
+            <p id="totalPrice">0.00€</p>
+        </div>
+
+    </header>
+
+        <h2>Añadir productos</h2>
+        <form onsubmit="addProducts(event)" id="productsForm"> 
+    
+            <div class="izquierda">
+                <label for="productName">Nombre</label>
+                <input type="text" name="productName" id="productName" placeholder="Nombre del producto" required>
+                <label for="productPrice">Precio</label>
+                <input type="number" step="0.01" min="0.01" name="productPrice" id="productPrice" placeholder="Precio del producto" required>
+                <button type="submit" id="addProduct">Añadir</button>
+            </div>
+    
+            <div class="derecha">
+                <label for="productDescription">Descripción</label>
+                <textarea rows="10" cols="20" name="productDescription" id="productDescription"> 
+                </textarea>
+            </div>
+    
+        </form>
+
+        <h2>Productos añadidos</h2>
+        
+        <img class="aguacate" src="./img/proyecto/aguacate.png" alt="aguacatin">
+    </section>
+
+    <section class="container">
+        <div id="addedProducts">
+        </div>
+    </section>
+
+
 </body>
 
 </html>
