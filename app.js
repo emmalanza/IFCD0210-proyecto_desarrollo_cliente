@@ -6,6 +6,12 @@ let productTemplate = {
 };
 let products = new Array;
 
+let filter = document.getElementById("filter");
+filter.oninput = (ev) => {
+    let filteredProtucts = 
+    products.filter(p => p.nameP.toLowerCase().includes(ev.target.value.toLowerCase()));
+    renderProducts(filteredProtucts);
+}
 
 function addProducts(ev){
 
@@ -28,42 +34,46 @@ function addProducts(ev){
  
 }
 
-function renderProducts(){
-
+function renderProducts(array = products){
     console.log("Pintando productos");
-    let copyOfProducts = [].concat(products);
-    let copyOfProduct = copyOfProducts.pop();
+    // let copyOfProducts = [].concat(products);
+    // let copyOfProduct = copyOfProducts.pop();
 
     let currentDiv = document.getElementById("addedProducts");
-    let newDiv = document.createElement("div");
-    newDiv.setAttribute("id", copyOfProduct.id);
-    let newProductName = document.createElement("p");
-    let newProductPrice = document.createElement("p");
-    let newProductDescription = document.createElement("p");
-    let newButton = document.createElement("button");
-    newButton.textContent = "❌";
-    newButton.onclick = function(ev){
-        console.log("Borrando productos ay lmao");
-        const nodes = ev.composedPath();
-        let productDel = nodes.find(node => node.nodeName === "DIV").id;
-        document.getElementById(productDel).remove();
-        products = products.filter(p => p.id != productDel);
-        getTotalPrice();
-    };
+    currentDiv.innerHTML = "";
 
-    let nameP = document.createTextNode(copyOfProduct.nameP);
-    let price = document.createTextNode(parseFloat(copyOfProduct.price).toFixed(2) + "€");
-    let description = document.createTextNode(copyOfProduct.description);
-
-    newProductName.appendChild(nameP);
-    newProductPrice.appendChild(price);
-    newProductDescription.append(description);
-    newDiv.appendChild(newProductName);
-    newDiv.appendChild(newProductDescription);
-    newDiv.appendChild(newProductPrice);
-    newDiv.appendChild(newButton);
-    currentDiv.appendChild(newDiv);
-
+    array.forEach(p => {
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("id", p.id);
+        let newProductName = document.createElement("p");
+        let newProductPrice = document.createElement("p");
+        let newProductDescription = document.createElement("p");
+        let newButton = document.createElement("button");
+        newButton.textContent = "❌";
+        newButton.onclick = function(ev){
+            console.log("Borrando productos ay lmao");
+            const nodes = ev.composedPath();
+            let productDel = nodes.find(node => node.nodeName === "DIV").id;
+            document.getElementById(productDel).remove();
+            products = products.filter(p => p.id != productDel);
+            filter.value = null;
+            renderProducts();
+            getTotalPrice();
+        };
+    
+        let nameP = document.createTextNode(p.nameP);
+        let price = document.createTextNode(parseFloat(p.price).toFixed(2) + "€");
+        let description = document.createTextNode(p.description);
+    
+        newProductName.appendChild(nameP);
+        newProductPrice.appendChild(price);
+        newProductDescription.append(description);
+        newDiv.appendChild(newProductName);
+        newDiv.appendChild(newProductDescription);
+        newDiv.appendChild(newProductPrice);
+        newDiv.appendChild(newButton);
+        currentDiv.appendChild(newDiv);     
+    });
 }
 
 function getTotalPrice(){

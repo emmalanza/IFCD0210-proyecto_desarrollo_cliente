@@ -27,6 +27,24 @@ body {
     align-items: center;   
 }
 
+.filter-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-container>input {
+    width: 40%;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    align-self: center;
+    margin: 10px;
+    border-color: rgba(215, 238, 207, 0.923);
+    background-color: rgba(224, 245, 217, 0.923);
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -64,14 +82,14 @@ header {
 
 .aguacate {
     position: absolute;
-    bottom: 2.9px;
+    bottom: 48px;
     left: -23px;
     width: 400px;
 }
 
 h2 {
-    text-align: center;
     width: 100%;
+    text-align: center;
     border-bottom: solid 2.5px darkgreen;
     margin-bottom: 0;
     margin-top: 5px;
@@ -122,10 +140,7 @@ h2 {
     resize: none;
     border: none;
     border-radius: 5%;
-}
-
-.derecha>input {
-    height: 75%;
+    width: 50%;
 }
 
 #addProduct {
@@ -138,8 +153,12 @@ h2 {
     flex-direction: column;
     align-items: center;
     width: 50%;
-    height: 200px;
+    height: 150px;
     overflow: scroll;
+    border: solid 1px;
+    border-radius: 15px;
+    border-color: darkgreen;
+    padding: 10px;
 }
 
 #addedProducts>div {
@@ -166,6 +185,58 @@ h2 {
     border-color:red;
 }
 
+@media only screen and (min-width: 1400px) {
+
+    .filter-container>input {
+        height: 35px;
+    }
+
+    #productsForm {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;  
+        gap: 60px;
+        margin-top: 15px;
+    }
+
+    .izquierda, .derecha {
+        width: 30%;
+    }
+    
+    label {
+        font-size: 20px;
+    }
+    
+    .izquierda>input {
+        width: 75%;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        padding: 3px;
+        margin-bottom: 5.5px;
+    }
+
+    .izquierda>button {
+        background-color: white;
+        border: solid 1.5px;
+        border-radius: 10px;
+        border-color:darkgreen;
+        color: darkgreen;
+        margin-top: 8px;
+        padding: 5px;
+    }
+
+    #addedProducts {
+        width: 70%;
+        height: 250px;
+    }
+
+    #addedProducts>div {
+        width: 90%;
+    }
+
+}
 
 @media only screen and (max-width: 992px) {
 
@@ -179,6 +250,17 @@ h2 {
     #totalPrice {
         font-size: 10px;
     }
+
+    #addedProducts {
+        width: 450px;
+        height: 300px;
+    }
+
+
+    #addedProducts>div {
+        width: 350px;
+    }
+
 }
 
 
@@ -230,6 +312,7 @@ h2 {
     #addedProducts {
         width: 100%;
         padding: 2px;
+        border: none;
     }
 
     #addedProducts>div {
